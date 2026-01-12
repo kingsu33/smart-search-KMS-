@@ -24,19 +24,20 @@ export function LoginScreen({
         e.preventDefault();
         setIsLoading(true);
 
-        try {
-            const res = await fetch("http://localhost:8090/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password, rememberMe }),
-                credentials: "include"
-            });
 
-            if (!res.ok) {
-                throw new Error("로그인 실패");
-            }
+        try {
+            // const res = await fetch("http://localhost:8090/api/auth/login", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({ email, password, rememberMe }),
+            //     credentials: "include"
+            // });
+
+            // if (!res.ok) {
+            //     throw new Error("로그인 실패");
+            // }
             onLogin();
         } catch (error) {
             console.error(error);

@@ -3,6 +3,8 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 
 import { LoginScreen } from './features/auth/LoginScreen';
 import { SignupScreen } from './features/auth/SignupScreen';
+import { OnboardingScreen } from './features/home/OnboardingScreen';
+import { HomeScreen } from './features/home/HomeScreen';
 import { useMobile } from './hooks/useMobile';
 
 export default function App() {
@@ -21,8 +23,8 @@ export default function App() {
     return (
       <div className={isDarkMode ? 'dark' : ''}>
         <Routes>
-          <Route path="/" element={<Navigate to="login" replace />}/>
-          <Route 
+          <Route path="/" element={<Navigate to="login" replace />} />
+          <Route
             path="/login"
             element={
               <LoginScreen
@@ -31,7 +33,7 @@ export default function App() {
               />
             }
           />
-          <Route 
+          <Route
             path="/signup"
             element={
               <SignupScreen
@@ -40,7 +42,8 @@ export default function App() {
               />
             }
           />
-
+          <Route path="/onboarding" element={<OnboardingScreen onComplete={() => navigate('/home')} />} />
+          <Route path="/home" />
 
         </Routes>
       </div>
@@ -50,7 +53,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />}/>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route
           path="/login"
           element={
@@ -59,7 +62,7 @@ export default function App() {
               onSignupClick={() => navigate('/signup')}
             />
           }
-        /> 
+        />
         <Route
           path="/signup"
           element={
@@ -69,8 +72,18 @@ export default function App() {
             />
           }
         />
+        <Route path='/onboarding' element={<OnboardingScreen onComplete={() => navigate('/home')} />} />
+        <Route
+          path='/home'
+          element={
+            <HomeScreen
+              onNavigateToChat={() => navigate('/chat')}
+
+            />
+          }
+        />
       </Routes>
-      
-      </>
+
+    </>
   );
 }
