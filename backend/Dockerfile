@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-slim
 WORKDIR /app
 
 # 의존성 설치 캐시 최적화
@@ -6,5 +6,5 @@ WORKDIR /app
 # RUN npm ci
 
 # 소스는 볼륨으로 마운트할 거라 COPY 안 해도 됨
-EXPOSE 8080
+EXPOSE 3000
 CMD ["sh"]
