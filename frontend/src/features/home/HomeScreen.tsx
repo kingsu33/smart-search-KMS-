@@ -4,22 +4,30 @@ import { Input } from "../../components/ui/input";
 import ExplorerSidebar from "../../components/layout/ExploreSidebar";
 import { useNavigate } from "react-router-dom";
 import { MessagesSquare, PanelLeft, Search } from "lucide-react";
+import { useDriveFolders } from "../files/hooks/useDriveFolders";
+import type { FileItem } from "../../types";
 
 interface HomeScreenProps {
     onNavigateToChat: () => void;
+    files: FileItem[];
 
 }
 
 export function HomeScreen({
+    files,
 
 }: HomeScreenProps) {
+    const {driveFolders} = 
+    useDriveFolders(files);
 
 
     return (
         <div>
             {/* 사이드바 */}
             <div>
-                <ExplorerSidebar />
+                <ExplorerSidebar 
+                    driveFolders={driveFolders}
+                />
             </div>
 
             {/* 메인 */}

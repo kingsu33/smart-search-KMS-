@@ -46,7 +46,21 @@ services:
     stdin_open: true
     tty: true
     command: sh
+  
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-auth
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: auth_db
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    volumes:
+      - mysql-data:/var/lib/mysql
 
 volumes:
   frontend_node_modules:
   backend_node_modules:
+  mysql-data:
