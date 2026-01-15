@@ -60,7 +60,30 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: kms-ollama
+    ports:
+      - "11434:11434"   # (선택) 로컬에서 직접 호출/디버깅하려면 열어두기
+    volumes:
+      - ollama-data:/root/.ollama  # 모델 캐시(다운로드) 영구 보관
+    restart: unless-stopped
+
+  trainer:
+    build:
+      context: ./trainer
+      dockerfile: Dockerfile
+    container_name: kms-trainer
+    volumes:
+      - ./trainer:/app
+      - ./model-server/models:/out   # 학습 결과 저장 위치
+    stdin_open: true
+    tty: true
+    command: sh
+
+
 volumes:
   frontend_node_modules:
   backend_node_modules:
   mysql-data:
+  ollama-data:
