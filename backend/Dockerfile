@@ -1,6 +1,7 @@
 FROM node:20-slim
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 # 의존성 설치 캐시 최적화
 # COPY package*.json ./
 # RUN npm ci
