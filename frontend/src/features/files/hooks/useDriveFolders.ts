@@ -11,8 +11,21 @@ export interface DriveFolder {
     icon?: string;
 }
 
-export function useDriveFolders(
-    onSelectAll?: () => void
-){
+type CheckState = 'checked' | 'indeterminate' | 'unchecked';
 
+export function useDriveFolders(
+    apiToken: string | undefined,
+    initialFiles: FileItem[],
+    onSelectAll?: () => void
+) {
+    const [driveFolders, setDriverFolders] = useState<DriveFolder[]>(() => {
+        try {
+            const saved = localStorage.getItem('drive:folders');
+            return saved ? JSON.parse(saved) : [];
+        } catch { return []; }
+    });
+
+    return {
+        driveFolders,
+    }
 };

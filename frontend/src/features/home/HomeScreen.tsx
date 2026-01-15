@@ -5,20 +5,21 @@ import ExplorerSidebar from "../../components/layout/ExploreSidebar";
 import { useNavigate } from "react-router-dom";
 import { MessagesSquare, PanelLeft, Search } from "lucide-react";
 import { useDriveFolders } from "../files/hooks/useDriveFolders";
-import type { FileItem } from "../../types";
+import type { FileItem, ApiKey } from "../../types";
 
 interface HomeScreenProps {
     onNavigateToChat: () => void;
     files: FileItem[];
+    apiKeys: ApiKey[];
 
 }
 
 export function HomeScreen({
     files,
+    apiKeys,
 
 }: HomeScreenProps) {
-    const {driveFolders} = 
-    useDriveFolders(files);
+    const {driveFolders} = useDriveFolders(apiKeys.find(k => k.isConnected)?.apiURL, files);
 
 
     return (

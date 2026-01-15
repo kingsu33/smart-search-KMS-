@@ -6,16 +6,23 @@ import { SignupScreen } from './features/auth/SignupScreen';
 import { OnboardingScreen } from './features/home/OnboardingScreen';
 import { HomeScreen } from './features/home/HomeScreen';
 import { useMobile } from './hooks/useMobile';
+import { useFiles } from './features/files/useFiles';
+import type { ApiKey } from './types';
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
+  const [ apiKeys ] = useState<ApiKey[]>([]);
 
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) root.classList.add('dark');
     else root.classList.remove('dark');
   }, [isDarkMode]);
+
+  const {
+    files,
+  } = useFiles();
 
   const { isMobile } = useMobile();
 
@@ -78,6 +85,8 @@ export default function App() {
           element={
             <HomeScreen
               onNavigateToChat={() => navigate('/chat')}
+              files={files}
+              apiKeys={apiKeys}
 
             />
           }
