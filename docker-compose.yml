@@ -32,7 +32,9 @@ services:
       - NODE_ENV=development
       # 필요하면 아래처럼 추가
       # - PORT=8080
-      # - MODEL_URL=http://model:8000
+      - MODEL_URL=http://model:8000
+    depends_on:
+      - model
 
   model:
     build:
@@ -46,6 +48,11 @@ services:
     stdin_open: true
     tty: true
     command: sh
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=phi3:mini
+    depends_on:
+      - ollama
   
   mysql:
     image: mysql:8.0
