@@ -26,12 +26,15 @@ export interface ApiKey {
 
 export interface FilesHookReturn {
     files: FileItem[];
-    // showPreviewDrawer: boolean;
-    // selectedFile: FileItem | null;
-    // onFileSelect: (file: FileItem) => void;
-    // onToggleFavorite: (fileId: string) => void;
-    // totalFiles: number;
-    // favoriteFiles: FileItem[];
-    // recentFiles: FileItem[];
-    // favoriteCount: number;
+    showPreviewDrawer: boolean;
+    selectedFile: FileItem | null;
+    onFileSelect: (file: FileItem) => void;
+    onToggleFavorite: (fileId: string) => void;
+    handleClosePreview: () => void;
+    totalFiles: number;
+    favoriteFiles: FileItem[];
+    recentFiles: FileItem[];
+    favoriteCount: number;
 }
+
+// export interface Home

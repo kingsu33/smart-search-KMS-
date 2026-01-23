@@ -22,7 +22,12 @@ export default function App() {
 
   const {
     files,
-  } = useFiles();
+    showPreviewDrawer,
+    selectedFile,
+    onFileSelect,
+    onToggleFavorite,
+    handleClosePreview,
+  } = useFiles([]);
 
   const { isMobile } = useMobile();
 
@@ -86,6 +91,8 @@ export default function App() {
             <HomeScreen
               onNavigateToChat={() => navigate('/chat')}
               files={files}
+              onToggleFavorite={onToggleFavorite}
+              onFileSelect={onFileSelect}
               apiKeys={apiKeys}
 
             />
