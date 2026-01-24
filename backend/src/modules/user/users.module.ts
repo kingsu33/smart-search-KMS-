@@ -7,4 +7,4 @@ import { UserRepository } from "./users.repository";
     exports: [UserService, UserRepository],
 })
 
-export class UsermModule { }
+export class UsersModule { }

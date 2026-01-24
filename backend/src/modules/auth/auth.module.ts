@@ -1,14 +1,14 @@
 import { Module } from "@nestjs/common";
-import { UsermModule } from "../user/users.module";
+import { UsersModule } from "../user/users.module";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import JwtStre
+import { JwtStrategy } from "./strategies/jwt.strategy";
 
 @Module({
     imports: [
-        UsermModule,
+        UsersModule,
         PassportModule,
         JwtModule.register({})
     ],

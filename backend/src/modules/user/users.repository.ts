@@ -9,8 +9,8 @@ export class UserRepository {
         return this.prisma.user.findUnique({ where: { email } });
     }
 
-    findById(id: string) {
-        return this.prisma.user.findId({ where: { id } });
+    findById(id: number) {
+        return this.prisma.user.findUnique({ where: { id } });
     }
 
     createUser(data: { email: string; password: string }) {

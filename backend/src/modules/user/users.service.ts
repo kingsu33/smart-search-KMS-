@@ -9,7 +9,7 @@ export class UserService {
         return this.userRepo.findByEmail(email);
     }
 
-    findById(id: string) {
+    findById(id: number) {
         return this.userRepo.findById(id);
     }
 

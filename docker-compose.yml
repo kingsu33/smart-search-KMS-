@@ -33,8 +33,11 @@ services:
       # 필요하면 아래처럼 추가
       # - PORT=8080
       - MODEL_URL=http://model:8000
+      - DATABASE_URL=mysql://appuser:apppassword@mysql:3306/auth_db
+      - SHADOW_DATABASE_URL=mysql://appuser:apppassword@mysql:3306/prisma_shadow
     depends_on:
       - model
+      - mysql
 
   model:
     build:
